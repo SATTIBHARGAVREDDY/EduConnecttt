@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  <input [(ngModel)]="student.fullName" name="name" placeholder="Name" required />
+  <input type="date" [(ngModel)]="student.dateOfBirth" name="dob" />
+  <input [(ngModel)]="student.contactNumber" name="contact" placeholder="Contact" />
+  <input [(ngModel)]="student.email" name="email" placeholder="Email" required />
+  <input [(ngModel)]="student.address" name="address" placeholder="Address" />
+  <button type="submit">Submit</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>
+
+<p id="successMessage" class="success-message" *ngIf="successMessage">{{successMessage}}</p>
+<p id="errorMessage" class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>

@@ -1,0 +1,14 @@
+<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+  <input formControlName="teacherId" type="number" placeholder="Teacher ID" />
+  <input formControlName="fullName" placeholder="Name" />
+  <input formControlName="contactNumber" placeholder="Contact" />
+  <input formControlName="email" placeholder="Email" />
+  <input formControlName="subject" placeholder="Subject" />
+  <input type="number" formControlName="yearsOfExperience" placeholder="Experience" />
+  <button type="submit">Submit</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>
+
+<p id="successMessage" class="success-message" *ngIf="successMessage">{{successMessage}}</p>
+<p id="errorMessage" class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+``

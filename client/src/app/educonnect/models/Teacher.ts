@@ -1,30 +1,20 @@
-<<<<<<< HEAD
-export class Teacher {
-  teacherId: number;
-  fullName: string;
-  contactNumber: string;
-  email: string;
-  subject: string;
-  yearsOfExperience: number;
-  constructor(teacherId: number, fullName: string, contactNumber: string, email: string, subject: string, yearsOfExperience: number) {
-    this.teacherId = teacherId;
-    this.fullName = fullName;
-    this.contactNumber = contactNumber;
-    this.email = email;
-    this.subject = subject;
-    this.yearsOfExperience = yearsOfExperience;
+export class Teacher{
+  constructor(
+    public teacherId:number,
+    public fullName:string,
+    public contactNumber:string,
+    public email:string,
+    public subject:string,
+    public yearsOfExperience:number
+  ){}
+  logAttributes():void{
+    console.log({
+      teacherId:this.teacherId,
+      fullName:this.fullName,
+      contactNumber:this.contactNumber,
+      email:this.email,
+      subject:this.subject,
+      yearsOfExperience:this.yearsOfExperience
+    });
   }
-  logAttributes(): void {
-    console.log('teacherId:', this.teacherId);
-    console.log('fullName:', this.fullName);
-    console.log('contactNumber:', this.contactNumber);
-    console.log('email:', this.email);
-    console.log('subject:', this.subject);
-    console.log('yearsOfExperience:', this.yearsOfExperience);
-  }
-=======
-
-export class Teacher {
-
->>>>>>> d76e0db293a8626f50b912ae8482fe15a23e1abc
 }
