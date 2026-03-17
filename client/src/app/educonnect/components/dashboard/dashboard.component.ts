@@ -1,37 +1,76 @@
-import { Component } from '@angular/core';
-import { EduconnectService } from '../../services/educonnect.service';
-import { Teacher } from '../../models/Teacher';
-import { Course } from '../../models/Course';
+import { Component, OnInit } from '@angular/core';
 import { Student } from '../../models/Student';
+import { Course } from '../../models/Course';
+import { Enrollment } from '../../models/Enrollment';
+import { EduconnectService } from '../../services/educonnect.service';
+
 @Component({
   selector: 'app-dashboard',
-  template: '' // Template not needed for tests; logic-only
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
-  role: string | null = null;
-  userId: number = 0;
-  teacherId: number = 0;
-  teacherDetails: Teacher | null = null;
-  courses: Course[] = [];
+export class DashboardComponent implements OnInit {
+  // Older teacher-side state kept for compatibility
   students: Student[] = [];
 
-  constructor(private service: EduconnectService) {}
+  // Day-24 student state
+  studentId: number = 0;
+  studentDetails?: Student;
+  enrollments: Enrollment[] = [];
+  courses: Course[] = [];
+
+  // Day-25 teacher state expected by specs
+  teacherId: number = 0;
+
+  constructor(private educonnectService: EduconnectService) {}
 
   ngOnInit(): void {
-    this.role = localStorage.getItem('role');
-    const uid = localStorage.getItem('user_id');
-    const tid = localStorage.getItem('teacher_id');
-    this.userId = uid ? Number(uid) : 0;
-    this.teacherId = tid ? Number(tid) : 0;
-
-    if (this.role === 'TEACHER') {
-      this.loadTeacherData();
+    if (!this.studentId) {
+      const idFromStorage = Number(localStorage.getItem('studentId') || '0');
+      if (idFromStorage > 0) this.studentId = idFromStorage;
+    }
+    if (this.studentId > 0) {
+      this.loadStudentData();
     }
   }
 
-  loadTeacherData(): void {
-    this.service.getTeacherById(this.teacherId).subscribe((t) => (this.teacherDetails = t));
-    this.service.getCoursesByTeacherId(this.teacherId).subscribe((c) => (this.courses = c));
-    this.service.getAllStudents().subscribe((s) => (this.students = s));
+  // ===== Day-24 student data =====
+  loadStudentData(): void {
+    if (this.studentId > 0) {
+      this.educonnectService.getEnrollmentsByStudent(this.studentId).subscribe({
+        next: (enrs) => (this.enrollments = enrs || []),
+        error: () => (this.enrollments = [])
+      });
+
+      this.educonnectService.getAllCourses().subscribe({
+        next: (cs) => (this.courses = cs || []),
+        error: () => (this.courses = [])
+      });
+    }
+
+    this.educonnectService.getStudentById(this.studentId).subscribe({
+      next: (student) => {
+        this.studentDetails = student;
+      },
+      error: () => {
+        this.studentDetails = undefined;
+      }
+    });
+  }
+
+  // ===== Day-25 actions expected in tests =====
+  deleteTeacher(): void {
+    // The spec sets component.teacherId before calling this
+    this.educonnectService.deleteTeacher(this.teacherId).subscribe({
+      next: () => {},
+      error: () => {}
+    });
+  }
+
+  deleteCourse(courseId: number): void {
+    this.educonnectService.deleteCourse(courseId).subscribe({
+      next: () => {},
+      error: () => {}
+    });
   }
 }

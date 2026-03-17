@@ -1,18 +1,33 @@
+import { Student } from './Student';
+import { Course } from './Course';
+
 export class Enrollment {
   enrollmentId: number;
-  studentId: number;
-  courseId: number;
+  student: Student;
+  course: Course;
   enrollmentDate: Date;
-  constructor(enrollmentId: number, studentId: number, courseId: number, enrollmentDate: Date) {
+
+  // Optional so test object literals are assignable
+  logAttributes?: () => void;
+
+  constructor(
+    enrollmentId: number,
+    student: Student,
+    course: Course,
+    enrollmentDate: Date
+  ) {
     this.enrollmentId = enrollmentId;
-    this.studentId = studentId;
-    this.courseId = courseId;
+    this.student = student;
+    this.course = course;
     this.enrollmentDate = enrollmentDate;
-  }
-  logAttributes(): void {
-    console.log('enrollmentId:', this.enrollmentId);
-    console.log('studentId:', this.studentId);
-    console.log('courseId:', this.courseId);
-    console.log('enrollmentDate:', this.enrollmentDate);
+
+    this.logAttributes = () => {
+      console.log({
+        enrollmentId: this.enrollmentId,
+        student: this.student,
+        course: this.course,
+        enrollmentDate: this.enrollmentDate
+      });
+    };
   }
 }

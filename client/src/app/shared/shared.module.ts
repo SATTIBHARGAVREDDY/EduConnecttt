@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthModule } from '../auth/auth.module';
 import { RouterModule } from '@angular/router';
 
+import { NavbarComponent } from './navbar/navbar.component';
+
+/**
+ * SharedModule: declare and export shared components so they can be used in AppModule and feature modules.
+ */
 @NgModule({
   declarations: [
+    NavbarComponent
   ],
   imports: [
     CommonModule,
-    AuthModule,
     RouterModule
   ],
   exports: [
+    NavbarComponent
   ]
 })
 export class SharedModule {}
+``

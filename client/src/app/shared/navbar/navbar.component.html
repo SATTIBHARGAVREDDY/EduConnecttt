@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">EduConnect</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ecNav"
+      aria-controls="ecNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="ecNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Teacher links -->
+        <li *ngIf="role === 'TEACHER'" class="nav-item">
+          <a class="nav-link" routerLink="/educonnect/course/create">Add Course</a>
+        </li>
+        <li *ngIf="role === 'TEACHER'" class="nav-item">
+          <a class="nav-link" routerLink="/educonnect/enrollment">Add Enrollment</a>
+        </li>
+
+        <!-- Student link -->
+        <li *ngIf="role === 'STUDENT'" class="nav-item">
+          <a class="nav-link" routerLink="/educonnect/enrollment">Enroll</a>
+        </li>
+      </ul>
+
+      <div class="d-flex">
+        <button class="btn btn-outline-light btn-sm" (click)="logout()" aria-label="Logout">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

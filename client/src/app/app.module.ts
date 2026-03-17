@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';  
+import { AppRoutingModule } from './app-routing.module';
+
+// If you have a SharedModule for navbar, keep it; otherwise remove the import.
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    AppRoutingModule 
+    AppRoutingModule,
+    // Remove this if you don't have SharedModule or navbar yet
+    SharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
