@@ -1,6 +1,6 @@
+
 export const environment = {
   production: false,
-  apiUrl: window.location.href.replace(/5000\/.*$/, "3000")
+  apiUrl: '' // keep empty for tests/mocks; set backend base URL if needed
 };
-
 

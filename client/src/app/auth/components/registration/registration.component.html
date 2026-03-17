@@ -1,0 +1,27 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="username" />
+  <input type="password" formControlName="password" />
+  <select formControlName="role" (change)="onRoleChange($event)">
+    <option value="">Select</option>
+    <option value="TEACHER">TEACHER</option>
+    <option value="STUDENT">STUDENT</option>
+  </select>
+  <input type="text" formControlName="fullName" />
+  <input type="text" formControlName="contactNumber" />
+  <input type="email" formControlName="email" />
+
+  <div *ngIf="selectedRole === 'TEACHER'">
+    <input type="text" formControlName="subject" />
+    <input type="number" formControlName="yearsOfExperience" />
+  </div>
+
+  <div *ngIf="selectedRole === 'STUDENT'">
+    <input type="date" formControlName="dateOfBirth" />
+    <input type="text" formControlName="address" />
+  </div>
+
+  <button type="submit">Register</button>
+</form>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+<div *ngIf="successMessage">{{ successMessage }}</div>
+

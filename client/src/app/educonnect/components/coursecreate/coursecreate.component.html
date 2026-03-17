@@ -1,10 +1,10 @@
 <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-  <input formControlName="courseId" type="number" placeholder="Course ID" />
-  <input formControlName="courseName" placeholder="Course Name" />
-  <textarea formControlName="description" placeholder="Description"></textarea>
-  <input type="number" formControlName="teacherId" placeholder="Teacher ID" />
-  <button type="submit">Submit</button>
+  <input type="text" formControlName="courseName" />
+  <textarea formControlName="description"></textarea>
+  <input type="number" formControlName="teacherId" />
+  <button type="submit">Create Course</button>
   <button type="button" (click)="resetForm()">Reset</button>
 </form>
-<p id="successMessage" class="success-message" *ngIf="successMessage">{{successMessage}}</p>
-<p id="errorMessage" class="error-message" *ngIf="errorMessage">{{errorMessage}}</p> //
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+<div *ngIf="successMessage">{{ successMessage }}</div>
+

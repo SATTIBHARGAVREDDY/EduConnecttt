@@ -1,0 +1,37 @@
+// --------src/app/auth/components/registration/registration.component.scss
+.auth-card {
+  width: min(640px, 95vw);
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+}
+.title { margin: 0 0 1rem; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .9rem;
+  margin-bottom: .5rem;
+}
+@media (max-width: 700px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: .35rem; }
+.form-control {
+  width: 100%;
+  padding: .65rem .8rem;
+  border: 1px solid #d0d5dd;
+  border-radius: .5rem;
+}
+.actions { margin-top: .75rem; display: flex; gap: .75rem; align-items: center; }
+.btn {
+  padding: .6rem 1rem;
+  border: 0;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.btn-primary { background: #0d6efd; color: #fff; }
+.btn-link { text-decoration: none; color: #0d6efd; background: transparent; }
+.alert { margin-top: 1rem; padding: .75rem; border-radius: .5rem; }
+.alert.success { background: #e7f7ee; color: #0f5132; }
+.alert.error { background: #fde8ea; color: #842029; }
+.error small { color: #b42318; }
+

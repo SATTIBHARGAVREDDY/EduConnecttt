@@ -1,5 +1,4 @@
 export const environment = {
-  // production: false,
-	apiUrl: window.location.href.replace(/5000\/.*$/, "3000")
+  production: true,
+  apiUrl: '' // set your real base URL only for actual deployments
 };
-

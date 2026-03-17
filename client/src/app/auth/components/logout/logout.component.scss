@@ -1,0 +1,11 @@
+
+// --------src/app/auth/components/logout/logout.component.scss
+.logout-wrap { display: flex; justify-content: center; }
+.btn-danger {
+  padding: .6rem 1rem;
+  border: 0;
+  border-radius: .5rem;
+  cursor: pointer;
+  background: #dc3545;
+  color: #fff;
+}
